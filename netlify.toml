@@ -5,5 +5,5 @@
   status = 200
 [build]
   command = "npm run build"
-  functions = "lambda" #  netlify-lambda reads this
+  functions = "built-lambda" 
   publish = "build"
