@@ -66983,7 +66983,7 @@ const {
   gql
 } = __webpack_require__(/*! apollo-server-lambda */ "../../node_modules/apollo-server-lambda/dist/index.js");
 
-const isProduction = "development" === 'production';
+const isDevelopment = "development" === 'development';
 const typeDefs = gql`
   type Query {
     hello: String
@@ -66996,12 +66996,11 @@ const resolvers = {
     }
   }
 };
-console.log("Productin?", isProduction);
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  playground: !isProduction,
-  introspection: !isProduction
+  playground: isDevelopment,
+  introspection: isDevelopment
 });
 exports.handler = server.createHandler();
 
