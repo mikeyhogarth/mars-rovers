@@ -7,13 +7,13 @@
     "apollo-server-lambda": "^2.6.9",
     "encoding": "^0.1.12",
     "graphql": "^14.4.2",
-    "http-proxy-middleware": "^0.19.1",
     "netlify-lambda": "^1.5.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "http-proxy-middleware": "^0.19.1"
   },
   "scripts": {
     "start": "react-scripts start",
