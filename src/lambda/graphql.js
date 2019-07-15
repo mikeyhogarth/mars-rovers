@@ -1,5 +1,5 @@
 const { ApolloServer, gql } = require("apollo-server-lambda");
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.CONTEXT === 'production';
 
 const typeDefs = gql`
   type Query {
@@ -15,7 +15,6 @@ const resolvers = {
   }
 };
 
-console.log("Productin?", isProduction)
 const server = new ApolloServer({
   typeDefs,
   resolvers,
