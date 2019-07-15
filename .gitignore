@@ -84,4 +84,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # Netlify
-build-lambda
+built-lambda
