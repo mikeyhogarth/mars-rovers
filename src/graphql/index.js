@@ -1,12 +1,15 @@
 import { ApolloServer } from "apollo-server-lambda";
 import { typeDefs, resolvers } from "./schema";
-//const isDevelopment = process.env.NODE_ENV === "development";
+import dotenv from "dotenv";
+dotenv.config();
+
+const isDevelopment = process.env.NODE_ENV === "development";
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  playground: true,
-  introspection: true
+  playground: isDevelopment,
+  introspection: isDevelopment
 });
 
 export default server;
