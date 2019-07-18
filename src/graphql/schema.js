@@ -1,4 +1,6 @@
 import { gql } from "apollo-server-lambda";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const typeDefs = gql`
   type Query {
@@ -9,7 +11,7 @@ export const typeDefs = gql`
 export const resolvers = {
   Query: {
     hello: (root, args, context) => {
-      return "Hello, graphql";
+      return `Hello, graphql: ${process.env.API_KEY}`;
     }
   }
 };
