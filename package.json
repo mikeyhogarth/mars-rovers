@@ -5,11 +5,13 @@
   "dependencies": {
     "@material-ui/core": "^4.2.0",
     "apollo-server-lambda": "^2.6.9",
+    "bufferutil": "^4.0.1",
     "encoding": "^0.1.12",
     "graphql": "^14.4.2",
     "netlify-lambda": "^1.5.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "utf-8-validate": "^5.0.2"
   },
   "devDependencies": {
     "react-scripts": "3.0.1",
@@ -17,7 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:lambda": "netlify-lambda serve src/lambda",
+    "start:lambda": "NODE_ENV=development netlify-lambda serve src/lambda",
     "build": "npm run build:app && npm run build:lambda",
     "build:app": "react-scripts build",
     "build:lambda": "netlify-lambda build src/lambda",
