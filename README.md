@@ -8,6 +8,11 @@ A UI for exploring the various NASA experiments involving animals in space.
 
 ```
 npm install
+
+# starts lambda and frontend
 npm start
+
+# or start individually
+npm run start:ui
 npm run start:labmda
 ```
