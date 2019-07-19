@@ -4,12 +4,16 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.2.0",
+    "apollo-datasource-rest": "^0.6.0",
     "apollo-server-lambda": "^2.6.9",
     "bufferutil": "^4.0.1",
     "dotenv": "^8.0.0",
     "encoding": "^0.1.12",
     "graphql": "^14.4.2",
+    "graphql-tools": "^4.0.5",
+    "lodash": "^4.17.15",
     "netlify-lambda": "^1.5.0",
+    "qs": "^6.7.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "utf-8-validate": "^5.0.2"

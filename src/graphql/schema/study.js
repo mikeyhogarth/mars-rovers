@@ -1,15 +1,15 @@
 import { gql } from "apollo-server-lambda";
 
 export const typeDefs = gql`
-  type Query {
-    hello: String
+  type Study {
+    title: String
   }
 `;
 
 export const resolvers = {
-  Query: {
-    hello: (root, args, context) => {
-      return `Hello, graphql`;
+  Study: {
+    title(obj) {
+      return obj._source["Study Title"];
     }
   }
 };

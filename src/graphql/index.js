@@ -1,13 +1,19 @@
 import { ApolloServer } from "apollo-server-lambda";
-import { typeDefs, resolvers } from "./schema";
+import schema from "./schema";
+import NASAGeneLabAPI from "./NasaGeneLabAPI";
+
 import dotenv from "dotenv";
 dotenv.config();
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  schema,
+  dataSources: () => {
+    return {
+      nasaGeneLabAPI: new NASAGeneLabAPI()
+    };
+  },
   playground: isDevelopment,
   introspection: isDevelopment
 });
