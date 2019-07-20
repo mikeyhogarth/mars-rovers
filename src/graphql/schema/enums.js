@@ -20,6 +20,8 @@ export const typeDefs = gql`
     PANCAM
     "Miniature Thermal Emission Spectrometer (Mini-TES)"
     MINITES
+    "Entry cam"
+    ENTRY
   }
 
   enum Rover {
