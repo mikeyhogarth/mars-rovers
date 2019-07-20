@@ -10,9 +10,18 @@ class NasaMarsRoversAPI extends RESTDataSource {
     request.params.set("api_key", process.env.NASA_API_KEY);
   }
 
-  async getManifestForRover(rover) {
+  async getManifestForRover({ rover }) {
     const manifest = await this.get(`manifests/${rover}`);
     return manifest.photo_manifest;
+  }
+
+  async getPhotosBySol({ rover, sol, camera, page }) {
+    const photos = await this.get(`rovers/${rover}/photos`, {
+      sol,
+      camera,
+      page
+    });
+    return photos.photos;
   }
 }
 

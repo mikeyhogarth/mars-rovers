@@ -6,8 +6,9 @@ import {
   typeDefs as Manifest,
   resolvers as manifestResolvers
 } from "./manifest";
+import { typeDefs as Photo, resolvers as photoResolvers } from "./photo";
 
 export default makeExecutableSchema({
-  typeDefs: [Enums, Query, Manifest],
-  resolvers: merge(queryResolvers, manifestResolvers)
+  typeDefs: [Enums, Query, Manifest, Photo],
+  resolvers: merge(queryResolvers, manifestResolvers, photoResolvers)
 });
