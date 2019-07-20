@@ -1,6 +1,6 @@
 import { ApolloServer } from "apollo-server-lambda";
 import schema from "./schema";
-import NASAGeneLabAPI from "./NasaGeneLabAPI";
+import NasaMarsRoversAPI from "./NasaMarsRoversAPI";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -11,7 +11,7 @@ const server = new ApolloServer({
   schema,
   dataSources: () => {
     return {
-      nasaGeneLabAPI: new NASAGeneLabAPI()
+      nasaMarsRoversAPI: new NasaMarsRoversAPI()
     };
   },
   playground: isDevelopment,
