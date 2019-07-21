@@ -1,22 +1,35 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Theme from "./theme";
-import Container from "@material-ui/core/Container";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Paper, Container } from "@material-ui/core";
+import { withStyles } from "@material-ui/styles";
 
 import ManifestChooser from "./ManifestChooser";
 import SolChooser from "./SolChooser";
 
-function App() {
+const styles = theme => {
+  return {
+    root: {
+      backgroundColor: theme.palette.primary.main
+    },
+    paper: {
+      minHeight: "100vh"
+    }
+  };
+};
+
+function App({ classes }) {
   return (
-    <Theme>
+    <div className={classes.root}>
       <Container maxWidth="sm">
-        <Router>
-          <Route path="/" exact component={ManifestChooser} />
-          <Route path="/:rover" component={SolChooser} />
-        </Router>
+        <Paper square className={classes.paper}>
+          <Router>
+            <Route path="/" exact component={ManifestChooser} />
+            <Route path="/rovers/:rover" component={SolChooser} />
+          </Router>
+        </Paper>
       </Container>
-    </Theme>
+    </div>
   );
 }
 
-export default App;
+export default withStyles(styles)(App);
