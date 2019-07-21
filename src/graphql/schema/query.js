@@ -6,7 +6,7 @@ export const typeDefs = gql`
     manifest(rover: Rover!): Manifest!
 
     "Query photos by Martian sol"
-    photosBySol(rover: Rover!, sol: Int!, camera: Camera, page: Int): [Photo]
+    photosBySol(rover: Rover!, sol: Int!, camera: Camera!, page: Int): [Photo]
   }
 `;
 

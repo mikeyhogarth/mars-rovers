@@ -28,8 +28,16 @@ export const typeDefs = gql`
     "Number of photos taken by that Rover"
     total_photos: Int
     "Photos taken by sol/date"
-    photos: [PhotoSummary]
+    photos(sol: Int): [PhotoSummary]
   }
 `;
 
-export const resolvers = {};
+export const resolvers = {
+  Manifest: {
+    photos(obj, args) {
+      return args.sol
+        ? obj.photos.filter(p => p.sol == parseInt(args.sol))
+        : obj.photos;
+    }
+  }
+};
