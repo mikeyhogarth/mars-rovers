@@ -1,20 +1,16 @@
 import React from "react";
-import { makeStyles, createStyles } from "@material-ui/styles";
+import { withStyles } from "@material-ui/styles";
 
-const useStyles = makeStyles(theme =>
-  createStyles({
-    copyright: {
-      backgroundColor: "black",
-      color: "white",
-      padding: theme.spacing(0.5),
-      margin: 0
-    }
-  })
-);
+const styles = theme => ({
+  copyright: {
+    backgroundColor: "black",
+    color: "white",
+    padding: theme.spacing(0.5),
+    margin: 0
+  }
+});
 
-const RoverImage = ({ rover }) => {
-  const classes = useStyles();
-
+const RoverImage = ({ classes, rover }) => {
   const imageName =
     rover.toLowerCase() === "curiosity"
       ? "curiosity.jpg"
@@ -27,4 +23,4 @@ const RoverImage = ({ rover }) => {
   );
 };
 
-export default RoverImage;
+export default withStyles(styles)(RoverImage);

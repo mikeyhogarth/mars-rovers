@@ -1,34 +1,19 @@
-import React, { useState } from "react";
-import { Tab, Tabs } from "@material-ui/core";
-
+import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Theme from "./theme";
 import Container from "@material-ui/core/Container";
-import Manifest from "./Manifest";
 
-const rovers = ["Curiosity", "Spirit", "Opportunity"];
+import ManifestChooser from "./ManifestChooser";
+import SolChooser from "./SolChooser";
 
 function App() {
-  const [roverIndex, setRoverIndex] = useState(0);
-
-  function handleChangeRover(event, newValue) {
-    setRoverIndex(newValue);
-  }
-
   return (
     <Theme>
       <Container maxWidth="sm">
-        <Tabs
-          centered
-          variant="fullWidth"
-          value={roverIndex}
-          onChange={handleChangeRover}
-        >
-          {rovers.map(rover => (
-            <Tab label={rover} />
-          ))}
-        </Tabs>
-
-        <Manifest rover={rovers[roverIndex].toUpperCase()} />
+        <Router>
+          <Route path="/" exact component={ManifestChooser} />
+          <Route path="/:rover" component={SolChooser} />
+        </Router>
       </Container>
     </Theme>
   );

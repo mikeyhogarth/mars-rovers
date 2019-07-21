@@ -1,8 +1,17 @@
-import { Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { Typography, Button } from "@material-ui/core";
 import React from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import RoverImage from "./RoverImage";
+import { withStyles } from "@material-ui/styles";
+
+const styles = theme => ({
+  proceedButtonContainer: {
+    textAlign: "center",
+    padding: theme.spacing(2)
+  }
+});
 
 const MANIFEST_QUERY = gql`
   query Manifest($rover: Rover!) {
@@ -17,7 +26,7 @@ const MANIFEST_QUERY = gql`
   }
 `;
 
-const Manifest = ({ rover }) => (
+const Manifest = ({ classes, rover }) => (
   <Query query={MANIFEST_QUERY} variables={{ rover }}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
@@ -47,10 +56,20 @@ const Manifest = ({ rover }) => (
           <Typography>
             The current status of my mission is: <em>{manifest.status}</em>.
           </Typography>
+
+          <div className={classes.proceedButtonContainer}>
+            <Button
+              color="primary"
+              component={Link}
+              to={`/rovers/${rover.toLowerCase()}`}
+            >
+              Explore Further
+            </Button>
+          </div>
         </>
       );
     }}
   </Query>
 );
 
-export default Manifest;
+export default withStyles(styles)(Manifest);
