@@ -62,7 +62,7 @@ function Sol({
         aria-labelledby="simple-dialog-title"
         open={dialogImage !== null}
       >
-        <img src={dialogImage} alt="Mars" />
+        <img width="100%" src={dialogImage} alt="Mars" />
       </Dialog>
 
       <Query
