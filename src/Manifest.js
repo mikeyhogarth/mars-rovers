@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Typography, Button } from "@material-ui/core";
+import { Typography, Button, LinearProgress } from "@material-ui/core";
 import React from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
@@ -32,7 +32,7 @@ const MANIFEST_QUERY = gql`
 const Manifest = ({ classes, rover }) => (
   <Query query={MANIFEST_QUERY} variables={{ rover }}>
     {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
+      if (loading) return <LinearProgress />;
       if (error) return <p>Error :( </p>;
 
       const { manifest } = data;

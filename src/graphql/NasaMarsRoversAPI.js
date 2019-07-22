@@ -1,4 +1,5 @@
 import { RESTDataSource } from "apollo-datasource-rest";
+import { pickBy } from "lodash";
 
 class NasaMarsRoversAPI extends RESTDataSource {
   constructor() {
@@ -15,12 +16,15 @@ class NasaMarsRoversAPI extends RESTDataSource {
     return manifest.photo_manifest;
   }
 
-  async getPhotosBySol({ rover, sol, camera, page }) {
-    const photos = await this.get(`rovers/${rover}/photos`, {
-      sol,
-      camera,
-      page
-    });
+  async getPhotosBySol({ rover, sol, camera = null, page = null }) {
+    const photos = await this.get(
+      `rovers/${rover}/photos`,
+      pickBy({
+        sol,
+        camera,
+        page
+      })
+    );
     return photos.photos;
   }
 }

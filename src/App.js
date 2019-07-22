@@ -5,11 +5,12 @@ import { withStyles } from "@material-ui/styles";
 
 import ManifestChooser from "./ManifestChooser";
 import SolChooser from "./SolChooser";
+import Sol from "./Sol";
 
 const styles = theme => {
   return {
     root: {
-      backgroundColor: theme.palette.primary.main
+      backgroundColor: theme.palette.grey
     },
     paper: {
       minHeight: "100vh"
@@ -21,10 +22,11 @@ function App({ classes }) {
   return (
     <div className={classes.root}>
       <Container maxWidth="sm">
-        <Paper square className={classes.paper}>
+        <Paper square elevation={24} className={classes.paper}>
           <Router>
             <Route path="/" exact component={ManifestChooser} />
-            <Route path="/rovers/:rover" component={SolChooser} />
+            <Route path="/rovers/:rover" exact component={SolChooser} />
+            <Route path="/rovers/:rover/sols/:sol" exact component={Sol} />
           </Router>
         </Paper>
       </Container>

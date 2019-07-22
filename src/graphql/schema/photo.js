@@ -5,7 +5,14 @@ export const typeDefs = gql`
     img_src: String
     sol: Int
     earth_date: String
+    camera: String
   }
 `;
 
-export const resolvers = {};
+export const resolvers = {
+  Photo: {
+    camera(obj) {
+      return obj.camera.name;
+    }
+  }
+};

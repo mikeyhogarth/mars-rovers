@@ -7,16 +7,25 @@ import {
   Typography,
   Slider,
   Grid,
-  Input
+  Input,
+  LinearProgress,
+  Button
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 
 const styles = theme => ({
+  proceedButtonContainer: {
+    textAlign: "center",
+    padding: theme.spacing(2)
+  },
   solInput: {
     textAlign: "center"
   },
+  breadcrumbs: {
+    padding: theme.spacing(3)
+  },
   content: {
-    padding: theme.spacing(2)
+    padding: theme.spacing(3)
   }
 });
 
@@ -43,9 +52,18 @@ function SolChooser({
 }) {
   const [sol, setSol] = useState(0);
 
+  function handleSolChange(newValue) {
+    if (typeof newValue === "number") setSol(newValue);
+    else setSol(0);
+  }
+
   return (
-    <div className={classes.content}>
-      <Breadcrumbs separator="›" aria-label="Breadcrumb">
+    <>
+      <Breadcrumbs
+        className={classes.breadcrumbs}
+        separator="›"
+        aria-label="Breadcrumb"
+      >
         <Link color="inherit" to="/">
           Rovers
         </Link>
@@ -57,22 +75,17 @@ function SolChooser({
         variables={{ rover: rover.toUpperCase() }}
       >
         {({ loading, error, data: { manifest } }) => {
-          if (loading) return <p>Loading...</p>;
+          if (loading) return <LinearProgress />;
           if (error) return <p>Error :( </p>;
-
-          function handleSolChange(newValue) {
-            if (typeof newValue === "number") setSol(newValue);
-            else setSol(0);
-          }
 
           const summary = manifest.photos.find(p => p.sol === sol);
 
           return (
-            <>
+            <div className={classes.content}>
+              {" "}
               <Typography variant="h3" gutterBottom>
                 The {rover} rover
               </Typography>
-
               <Typography id="sols-slider" gutterBottom>
                 Choose a sol...
               </Typography>
@@ -119,13 +132,22 @@ function SolChooser({
                     I used the following cameras:{" "}
                     <strong>{summary.cameras.join(", ")}</strong>
                   </Typography>
+                  <div className={classes.proceedButtonContainer}>
+                    <Button
+                      color="primary"
+                      component={Link}
+                      to={`/rovers/${rover.toLowerCase()}/sols/${sol}`}
+                    >
+                      Explore Sol {sol}
+                    </Button>
+                  </div>
                 </div>
               )}
-            </>
+            </div>
           );
         }}
       </Query>
-    </div>
+    </>
   );
 }
 
